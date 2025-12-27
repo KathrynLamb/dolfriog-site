@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { Phone, Mail, MapPin, Calendar, Heart, Trees, Home } from "lucide-react";
+import { Phone, Mail, MapPin, Calendar, Heart, Trees, Home, X, Compass, Mountain, Beer } from "lucide-react";
 
 export default function DolfriogHomepage() {
   const [activeImage] = useState(0);
+  // ✅ STATE: Controls the map popup
+  const [showMap, setShowMap] = useState(false);
 
   const heroImages = useMemo(() => ["/full_house.png"], []);
 
@@ -36,7 +38,6 @@ export default function DolfriogHomepage() {
               >
                 Stays
               </a>
-              {/* ✅ ADDED: High visibility link for fundraising */}
               <a href="/renovation" className="text-amber-600 hover:text-amber-700 font-bold transition-colors">
                 Support Us
               </a>
@@ -404,7 +405,7 @@ export default function DolfriogHomepage() {
         </div>
       </section>
 
-      {/* ================= ✅ ADDED: Renovation / Fundraising Section ================= */}
+      {/* ================= Renovation / Fundraising Section ================= */}
       <section className="relative py-20 px-4 bg-amber-50 border-y border-amber-100">
         <div className="max-w-4xl mx-auto text-center">
           <span className="inline-block py-1 px-3 rounded-full bg-amber-100 text-amber-700 text-xs font-bold tracking-wider mb-6 border border-amber-200">
@@ -427,7 +428,6 @@ export default function DolfriogHomepage() {
             >
               View the Restoration Plans
             </a>
-            {/* You can replace this href with your actual GoFundMe link later */}
             <a 
               href="https://gofundme.com/" 
               target="_blank" 
@@ -566,11 +566,21 @@ export default function DolfriogHomepage() {
               <p className="font-medium">stay@dolfriog.wales</p>
             </div>
 
-            <div className="bg-emerald-900/50 p-6 rounded-lg">
-              <MapPin className="w-8 h-8 text-emerald-200 mx-auto mb-3" />
-              <p className="text-sm text-emerald-200 mb-2">Location</p>
-              <p className="font-medium">Beddgelert area</p>
-            </div>
+            {/* ✅ MODIFIED: Interactive Location Card */}
+            <button
+              onClick={() => setShowMap(true)}
+              className="bg-emerald-900/50 p-6 rounded-lg hover:bg-emerald-800 transition-all duration-300 hover:scale-105 group cursor-pointer w-full text-center relative overflow-hidden"
+            >
+              <div className="relative z-10">
+                <MapPin className="w-8 h-8 text-emerald-200 mx-auto mb-3 group-hover:text-amber-300 transition-colors" />
+                <p className="text-sm text-emerald-200 mb-2 group-hover:text-white">Location</p>
+                <p className="font-medium text-white group-hover:text-amber-200">Beddgelert area</p>
+                <span className="text-xs text-amber-300 font-bold uppercase tracking-widest mt-3 block opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">
+                  Open Adventure Map
+                </span>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 to-transparent opacity-0 group-hover:opacity-50 transition-opacity" />
+            </button>
           </div>
 
           <div className="bg-emerald-900/50 p-8 rounded-lg text-left max-w-2xl mx-auto">
@@ -589,7 +599,6 @@ export default function DolfriogHomepage() {
           <h2 className="text-2xl font-serif text-white mb-4">Dolfriog Hall</h2>
           <p className="text-sm mb-4">A Grade II-Listed Victorian Estate in Snowdonia National Park</p>
           
-          {/* ✅ ADDED: Footer Link for Renovation */}
           <div className="flex justify-center gap-6 text-sm font-medium mb-8">
             <a href="/renovation" className="text-amber-400 hover:text-amber-300 transition-colors">
               Restoration Project
@@ -602,6 +611,95 @@ export default function DolfriogHomepage() {
           <p className="text-xs text-emerald-400">© 2025 Dolfriog Hall. Preserving Welsh heritage since 1830.</p>
         </div>
       </footer>
+
+      {/* ================= ✅ DELIGHTFUL MAP MODAL ================= */}
+      {showMap && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-emerald-950/90 backdrop-blur-sm animate-in fade-in duration-300">
+          <div className="bg-white w-full max-w-4xl h-[85vh] md:h-[80vh] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row relative animate-in zoom-in-95 duration-300">
+            
+            {/* Close Button */}
+            <button 
+              onClick={() => setShowMap(false)}
+              className="absolute top-4 right-4 z-20 bg-white/90 hover:bg-white text-emerald-900 p-2 rounded-full shadow-lg transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Sidebar (Mobile: Bottom, Desktop: Left) */}
+            <div className="w-full md:w-1/3 bg-emerald-50 p-6 md:p-8 flex flex-col justify-between order-2 md:order-1 overflow-y-auto">
+              <div>
+                <div className="flex items-center gap-2 mb-4 text-emerald-800">
+                  <Compass className="w-5 h-5" />
+                  <span className="text-xs font-bold tracking-widest uppercase">Basecamp</span>
+                </div>
+                <h3 className="text-2xl font-serif text-emerald-950 mb-4">Your Gateway to the Wild</h3>
+                <p className="text-emerald-800/80 text-sm leading-relaxed mb-6">
+                  Tucked into the Nantmor Valley, we are hidden enough to feel secret, but close enough to the pub to feel civilized.
+                </p>
+
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-amber-100 p-2 rounded-full text-amber-700 mt-1">
+                      <Beer className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-emerald-900 text-sm">The Local Pub</p>
+                      <p className="text-xs text-emerald-700">The Tanronnen Inn (Beddgelert)</p>
+                      <p className="text-xs text-emerald-600 mt-0.5">5 min drive / 40 min river walk</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="bg-green-100 p-2 rounded-full text-green-700 mt-1">
+                      <Mountain className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-emerald-900 text-sm">Snowdon (Yr Wyddfa)</p>
+                      <p className="text-xs text-emerald-700">Watkin Path Start Point</p>
+                      <p className="text-xs text-emerald-600 mt-0.5">8 min drive</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="bg-blue-100 p-2 rounded-full text-blue-700 mt-1">
+                      <MapPin className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-emerald-900 text-sm">Aberglaslyn Gorge</p>
+                      <p className="text-xs text-emerald-700">Voted 'Best Walk in UK'</p>
+                      <p className="text-xs text-emerald-600 mt-0.5">Direct access from our woods</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <a 
+                href="https://www.google.com/maps/dir//Dolfriog+Hall+Llanfrothen" 
+                target="_blank" 
+                rel="noreferrer"
+                className="mt-8 w-full bg-emerald-900 text-white py-3 rounded-lg text-center font-medium hover:bg-emerald-800 transition-colors shadow-md flex items-center justify-center gap-2"
+              >
+                Get Directions <Compass className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Map Frame */}
+            <div className="w-full md:w-2/3 h-64 md:h-full bg-gray-100 order-1 md:order-2 relative">
+               {/* Satellite view for maximum "Adventure" feel */}
+               <iframe 
+                src="https://maps.google.com/maps?q=Dolfriog+Hall+Llanfrothen&t=k&z=15&ie=UTF8&iwloc=&output=embed" 
+                className="w-full h-full border-0" 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Dolfriog Hall Map"
+              />
+              <div className="absolute inset-0 pointer-events-none border-[12px] border-emerald-50/20"></div>
+            </div>
+
+          </div>
+        </div>
+      )}
     </div>
   );
 }
