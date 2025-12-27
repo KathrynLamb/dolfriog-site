@@ -608,8 +608,15 @@ export default function DolfriogHomepage() {
             </a>
           </div>
 
-          <p className="text-xs text-emerald-400">© 2025 Dolfriog Hall. Preserving Welsh heritage since 1830.</p>
-        </div>
+          {/* Inside your Footer section */}
+          <p className="text-xs text-emerald-400">
+            {/* The copyright symbol is now a secret door */}
+            <a href="/admin" className="cursor-default hover:text-emerald-300 transition-colors">
+              ©
+            </a> 
+            2025 Dolfriog Hall. Preserving Welsh heritage since 1830.
+          </p>        
+          </div>
       </footer>
 
       {/* ================= ✅ DELIGHTFUL MAP MODAL ================= */}
