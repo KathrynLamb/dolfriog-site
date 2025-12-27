@@ -25,38 +25,31 @@ export default function DolfriogHomepage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header
-        className={[
-          "fixed top-0 w-full z-50 transition-all duration-300",
-          scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm" : "bg-transparent",
-        ].join(" ")}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-          <button
-            onClick={() => scrollToSection("hero")}
-            className="text-2xl sm:text-3xl font-serif text-emerald-900 hover:text-emerald-800 transition-colors"
-            type="button"
-          >
-            Dolfriog Hall
-          </button>
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+    <div className="flex items-center gap-6">
+      <a href="/" className="text-2xl sm:text-3xl font-serif text-emerald-800">
+        Dolfriog Hall
+      </a>
+      <nav className="hidden sm:flex gap-4 text-sm font-medium text-emerald-800">
+        <a href="/about" className="hover:text-emerald-600 transition-colors">
+          Our Story
+        </a>
+        <a href="/#stays" className="hover:text-emerald-600 transition-colors">
+          Stays
+        </a>
+      </nav>
+    </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <button
-              type="button"
-              onClick={() => scrollToSection("stays")}
-              className="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-md text-emerald-900 hover:bg-emerald-50 transition-colors font-medium"
-            >
-              Stays
-            </button>
-            <a
-              href="/booking"
-              className="bg-emerald-700 hover:bg-emerald-800 text-white px-5 sm:px-6 py-2 rounded-md text-sm sm:text-base transition-colors"
-            >
-              Book Your Stay
-            </a>
-          </div>
-        </div>
-      </header>
+    <a
+      href="/booking"
+      className="bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-2 rounded-md text-sm sm:text-base transition-colors"
+    >
+      Book Your Stay
+    </a>
+  </div>
+</header>
+
 
       {/* Hero */}
       <section id="hero" className="relative h-screen">
