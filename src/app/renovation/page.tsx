@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import { Hammer, Heart, History, TreeDeciduous, ArrowRight, Award } from "lucide-react";
+import React from "react";
+import { Hammer, Heart, History, TreeDeciduous, ArrowRight, Award, Mountain } from "lucide-react";
 
 export default function RenovationPage() {
   return (
     <div className="min-h-screen bg-stone-50 font-sans">
-      {/* Navigation (Simplified for this page) */}
+      {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-stone-200">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <a href="/" className="text-xl font-serif text-emerald-900">
@@ -19,89 +19,110 @@ export default function RenovationPage() {
       </nav>
 
       {/* Hero Section */}
-      <header className="relative pt-32 pb-20 px-6 bg-emerald-900 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-            {/* Ideally a picture of the renovation work or scaffolding here */}
-            <img src="/close_up.png" alt="Textures of stone" className="w-full h-full object-cover grayscale" />
+      <header className="relative pt-36 pb-24 px-6 bg-emerald-950 text-white overflow-hidden">
+        {/* Background Texture Overlay */}
+        <div className="absolute inset-0 opacity-30 mix-blend-overlay">
+            <img src="/close_up.png" alt="Stone texture" className="w-full h-full object-cover grayscale" />
         </div>
-        <div className="relative max-w-4xl mx-auto text-center">
-          <span className="inline-block py-1 px-3 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold tracking-wider mb-6 border border-amber-500/30">
+        
+        <div className="relative max-w-4xl mx-auto text-center z-10">
+          <span className="inline-block py-1 px-4 rounded-full bg-amber-500/20 text-amber-200 text-xs font-bold tracking-widest mb-8 border border-amber-500/30">
             THE RESTORATION PROJECT
           </span>
-          <h1 className="text-4xl md:text-6xl font-serif mb-6 leading-tight">
+          <h1 className="text-4xl md:text-7xl font-serif mb-8 leading-tight">
             Help Us Wake the <br /> Sleeping Giant
           </h1>
-          <p className="text-xl md:text-2xl text-emerald-100 max-w-2xl mx-auto leading-relaxed">
-            For decades, Dolfriog Hall was a place of adventure for thousands of children. 
-            Now, the hall has fallen silent—and we need your help to bring it back to life.
+          <p className="text-xl md:text-2xl text-emerald-100/90 max-w-2xl mx-auto leading-relaxed font-light">
+            A Grade II listed masterpiece. A rare Celtic rainforest. A home to thousands of childhood memories. 
+            <span className="block mt-4 text-white font-medium">It’s time to bring the heartbeat back to Dolfriog.</span>
           </p>
         </div>
       </header>
 
-      {/* The Story / Hook */}
-      <section className="py-20 px-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="prose prose-lg prose-stone mx-auto">
-            <h2 className="text-3xl font-serif text-emerald-900 mb-6">Why We Are Asking for Help</h2>
-            <p className="mb-4 text-stone-700">
-              If you grew up in Northamptonshire or the surrounding areas, there is a good chance you—or your parents—stayed at Dolfriog Hall. It was more than a school trip; it was a rite of passage. It was where you climbed your first mountain, walked the gorge, and sat by the fire with friends.
+      {/* The Emotional Hook */}
+      <section className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="prose prose-lg prose-stone mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif text-emerald-900 mb-8">
+              More Than Just Stone & Slate
+            </h2>
+            <p className="text-xl leading-relaxed text-stone-600">
+              Some places have a soul. You can feel it in the creak of the floorboards and the rush of the river outside. For over 50 years, Dolfriog Hall was a rite of passage for children from Northamptonshire—the place where they climbed their first mountain and saw their first dark sky.
             </p>
-            <p className="mb-4 text-stone-700">
-              <strong>But time has been unkind to the Hall.</strong>
+            <p className="text-xl leading-relaxed text-stone-600">
+              But today, Dolfriog needs a rite of passage of its own.
             </p>
-            <p className="mb-4 text-stone-700">
-              After the education centre closed, the estate faced an uncertain future. The roof is failing, the ancient windows are rotting, and the Celtic rainforest is reclaiming the grounds.
-            </p>
-            <p className="text-stone-700">
-              We are a small family team committed to saving this Grade II listed treasure, but the scale of the work is immense. We aren't just fixing a house; we are preserving a piece of Welsh heritage and a repository of thousands of childhood memories.
-            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="p-6 bg-white rounded-xl shadow-sm border border-stone-100">
+              <History className="w-8 h-8 text-emerald-800 mx-auto mb-4" />
+              <h3 className="font-serif text-lg text-emerald-900 mb-2">The Heritage</h3>
+              <p className="text-sm text-stone-600">
+                Built in 1830, the Hall is a Tudor-Gothic gem. We are fighting to save the original leadwork, the rotting windows, and the historic plasterwork before they are lost.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-xl shadow-sm border border-stone-100">
+              <TreeDeciduous className="w-8 h-8 text-emerald-800 mx-auto mb-4" />
+              <h3 className="font-serif text-lg text-emerald-900 mb-2">The Rainforest</h3>
+              <p className="text-sm text-stone-600">
+                The estate sits in a rare temperate rainforest. Your support helps us clear invasive species and protect this globally significant habitat.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-xl shadow-sm border border-stone-100">
+              <Mountain className="w-8 h-8 text-emerald-800 mx-auto mb-4" />
+              <h3 className="font-serif text-lg text-emerald-900 mb-2">The Future</h3>
+              <p className="text-sm text-stone-600">
+                We aren't turning this into a faceless hotel. We are restoring it as a family-run retreat that honors the thousands of footsteps that came before.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* The Plan / Timeline */}
-      <section className="py-20 bg-white border-y border-stone-200">
+      <section className="py-24 bg-stone-100">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-serif text-emerald-900 text-center mb-16">The Road to Restoration</h2>
           
           <div className="grid md:grid-cols-3 gap-12">
             {/* Phase 1 */}
-            <div className="relative p-8 rounded-2xl bg-stone-50 border border-stone-100 shadow-sm">
-              <div className="absolute -top-6 left-8 bg-emerald-600 text-white p-3 rounded-lg shadow-lg">
+            <div className="relative p-8 rounded-2xl bg-white border border-stone-200 shadow-sm transform hover:-translate-y-1 transition-transform duration-300">
+              <div className="absolute -top-6 left-8 bg-emerald-700 text-white p-3 rounded-lg shadow-lg">
                 <Hammer className="w-6 h-6" />
               </div>
-              <h3 className="mt-6 text-xl font-bold text-emerald-900 mb-2">Phase 1: Secure the Shell</h3>
-              <p className="text-sm font-bold text-amber-600 mb-4">IN PROGRESS</p>
-              <p className="text-stone-600 mb-4">
-                We are urgently repairing the Victorian slate roof and leadwork to stop water ingress. This is critical to save the original plasterwork.
+              <h3 className="mt-6 text-xl font-bold text-emerald-900 mb-2">Phase 1: Sheltering the Legacy</h3>
+              <p className="text-xs font-bold tracking-widest text-amber-600 mb-4 uppercase">Urgent · In Progress</p>
+              <p className="text-stone-600 mb-6 text-sm leading-relaxed">
+                The roof is the hat that keeps the house warm. We are replacing thousands of Victorian slates and repairing the lead valleys to stop water ingress and save the structure.
               </p>
               <div className="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
                 <div className="bg-emerald-500 w-3/4 h-full" />
               </div>
-              <p className="text-xs text-right mt-1 text-stone-500">75% Funded</p>
+              <p className="text-xs text-right mt-2 text-stone-500 font-medium">75% Funded</p>
             </div>
 
             {/* Phase 2 */}
-            <div className="relative p-8 rounded-2xl bg-stone-50 border border-stone-100 shadow-sm opacity-75">
+            <div className="relative p-8 rounded-2xl bg-white border border-stone-200 shadow-sm opacity-80 hover:opacity-100 transition-opacity duration-300">
               <div className="absolute -top-6 left-8 bg-emerald-800 text-white p-3 rounded-lg shadow-lg">
                 <TreeDeciduous className="w-6 h-6" />
               </div>
-              <h3 className="mt-6 text-xl font-bold text-emerald-900 mb-2">Phase 2: The Rainforest</h3>
-              <p className="text-sm font-bold text-stone-500 mb-4">STARTING SPRING 2025</p>
-              <p className="text-stone-600">
-                Restoring the overgrown paths and managing invasive species in our ancient Celtic rainforest, allowing safe public access to the river again.
+              <h3 className="mt-6 text-xl font-bold text-emerald-900 mb-2">Phase 2: The Wild Garden</h3>
+              <p className="text-xs font-bold tracking-widest text-stone-500 mb-4 uppercase">Spring 2025</p>
+              <p className="text-stone-600 text-sm leading-relaxed">
+                Restoring the overgrown Victorian paths and managing the ancient woodland, ensuring the Celtic rainforest thrives for another century.
               </p>
             </div>
 
             {/* Phase 3 */}
-            <div className="relative p-8 rounded-2xl bg-stone-50 border border-stone-100 shadow-sm opacity-75">
+            <div className="relative p-8 rounded-2xl bg-white border border-stone-200 shadow-sm opacity-80 hover:opacity-100 transition-opacity duration-300">
               <div className="absolute -top-6 left-8 bg-emerald-900 text-white p-3 rounded-lg shadow-lg">
-                <History className="w-6 h-6" />
+                <Heart className="w-6 h-6" />
               </div>
-              <h3 className="mt-6 text-xl font-bold text-emerald-900 mb-2">Phase 3: The Interiors</h3>
-              <p className="text-sm font-bold text-stone-500 mb-4">FUTURE GOAL</p>
-              <p className="text-stone-600">
-                Restoring the dormitory wings into comfortable accommodation, preserving the graffiti left by students over the last 50 years where possible.
+              <h3 className="mt-6 text-xl font-bold text-emerald-900 mb-2">Phase 3: Breathing Life Back In</h3>
+              <p className="text-xs font-bold tracking-widest text-stone-500 mb-4 uppercase">The Vision</p>
+              <p className="text-stone-600 text-sm leading-relaxed">
+                Turning the old dormitories into beautiful spaces for rest, while preserving the "graffiti history" left by students over the last 50 years.
               </p>
             </div>
           </div>
@@ -109,84 +130,97 @@ export default function RenovationPage() {
       </section>
 
       {/* The Ask / GoFundMe Style */}
-      <section className="py-20 px-6 bg-emerald-50">
+      <section className="py-24 px-6 bg-emerald-900 text-white">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
+            
+            {/* Left Column: The Appeal */}
             <div>
-              <h2 className="text-4xl font-serif text-emerald-900 mb-6">Become a Part of History</h2>
-              <p className="text-lg text-emerald-800 mb-8">
-                We aren't asking for handouts—we're inviting you to become a guardian of the Hall. In exchange for your support, we offer permanent recognition on the estate.
+              <h2 className="text-4xl font-serif mb-6">Be A Guardian of Dolfriog</h2>
+              <p className="text-lg text-emerald-100 mb-8 leading-relaxed">
+                Whether you stayed here 30 years ago, or simply believe that beautiful, historic things are worth saving—you can help. In exchange for your stewardship, we offer permanent recognition on the estate.
               </p>
               
               <div className="space-y-6">
-                <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center text-emerald-700 shadow-sm">
+                <div className="flex gap-5 items-start">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-amber-400 border border-white/10">
                         <Award className="w-6 h-6" />
                     </div>
                     <div>
-                        <h4 className="font-bold text-emerald-900">Sponsor a Slate (£50)</h4>
-                        <p className="text-sm text-emerald-700">Your name (or a loved one's) written on the underside of a new Welsh slate, protecting the roof for another 100 years.</p>
+                        <h4 className="font-bold text-white text-lg">Sponsor a Slate (£50)</h4>
+                        <p className="text-sm text-emerald-200 mt-1">Your name (or a loved one's) written on the underside of a new Welsh slate, protecting the roof for the next 100 years.</p>
                     </div>
                 </div>
-                <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center text-emerald-700 shadow-sm">
+                
+                <div className="flex gap-5 items-start">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-green-400 border border-white/10">
                         <TreeDeciduous className="w-6 h-6" />
                     </div>
                     <div>
-                        <h4 className="font-bold text-emerald-900">Plant a Native Oak (£150)</h4>
-                        <p className="text-sm text-emerald-700">We will plant a sapling in the rainforest in your name, with a GPS tag so you can visit it.</p>
+                        <h4 className="font-bold text-white text-lg">Plant a Native Oak (£150)</h4>
+                        <p className="text-sm text-emerald-200 mt-1">We will plant a native sapling in the rainforest in your name to help regenerate the ecosystem. Includes GPS coordinates.</p>
                     </div>
                 </div>
-                <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center text-emerald-700 shadow-sm">
+                
+                <div className="flex gap-5 items-start">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-red-400 border border-white/10">
                         <Heart className="w-6 h-6" />
                     </div>
                     <div>
-                        <h4 className="font-bold text-emerald-900">Founding Member (£500+)</h4>
-                        <p className="text-sm text-emerald-700">Includes a plaque on the "Wall of Guardians" and a voucher for a 2-night stay once renovations are complete.</p>
+                        <h4 className="font-bold text-white text-lg">Founding Member (£500+)</h4>
+                        <p className="text-sm text-emerald-200 mt-1">A bronze plaque on the "Wall of Guardians" in the main hall, plus a voucher for a 2-night stay upon completion.</p>
                     </div>
                 </div>
               </div>
             </div>
 
-            {/* Donation Card */}
-            <div className="bg-white p-8 rounded-2xl shadow-xl border border-emerald-100">
-                <div className="mb-6">
-                    <p className="text-sm font-semibold text-emerald-600 mb-1">Fundraising Goal</p>
-                    <div className="flex items-end gap-2 mb-2">
-                        <span className="text-4xl font-bold text-emerald-900">£12,450</span>
-                        <span className="text-stone-500 mb-1">raised of £50,000 goal</span>
+            {/* Right Column: Donation Card */}
+            <div className="bg-white text-stone-900 p-8 rounded-2xl shadow-2xl">
+                <div className="mb-8">
+                    <p className="text-sm font-bold text-emerald-700 uppercase tracking-wider mb-2">Current Goal: The Roof</p>
+                    <div className="flex items-baseline gap-2 mb-3">
+                        <span className="text-5xl font-serif text-stone-900">£12,450</span>
+                        <span className="text-stone-500 font-medium">raised of £50,000</span>
                     </div>
-                    <div className="w-full bg-stone-100 h-3 rounded-full overflow-hidden">
-                        <div className="bg-emerald-500 w-[25%] h-full rounded-full" />
+                    <div className="w-full bg-stone-100 h-4 rounded-full overflow-hidden">
+                        <div className="bg-emerald-600 w-[25%] h-full rounded-full shadow-[0_0_10px_rgba(5,150,105,0.5)]" />
                     </div>
-                    <p className="text-xs text-stone-400 mt-2">142 supporters</p>
+                    <div className="flex justify-between mt-3 text-xs text-stone-500 font-medium">
+                        <span>142 Guardians</span>
+                        <span>25% Complete</span>
+                    </div>
                 </div>
 
                 <div className="space-y-4">
-                    <button className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 rounded-lg shadow-md transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                        Donate via GoFundMe <ArrowRight className="w-5 h-5" />
-                    </button>
-                    <p className="text-xs text-center text-stone-500">
-                        All donations go directly to the "Save Dolfriog" material fund.
+                    {/* Add your real GoFundMe Link here */}
+                    <a 
+                      href="https://gofundme.com" 
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-5 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 text-lg"
+                    >
+                        Donate to the Fund <ArrowRight className="w-5 h-5" />
+                    </a>
+                    <p className="text-xs text-center text-stone-400 leading-tight">
+                        Payments are processed securely via GoFundMe.<br/>All funds go directly to materials & specialist labor.
                     </p>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-stone-100">
-                    <h5 className="text-sm font-bold text-stone-800 mb-4">Recent Supporters</h5>
-                    <div className="space-y-3">
-                        <div className="flex items-center gap-3 text-sm">
-                            <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold">JD</div>
+                <div className="mt-8 pt-8 border-t border-stone-100">
+                    <h5 className="text-sm font-bold text-stone-900 mb-4">Why people are donating</h5>
+                    <div className="space-y-4">
+                        <div className="flex gap-3 text-sm">
+                            <div className="w-8 h-8 rounded-full bg-emerald-100 flex-shrink-0 flex items-center justify-center text-emerald-800 font-bold font-serif">A</div>
                             <div>
-                                <p className="font-medium text-stone-900">John Doe</p>
-                                <p className="text-xs text-stone-500">"For the Class of '82"</p>
+                                <p className="font-medium text-stone-900">Anne Roberts</p>
+                                <p className="text-stone-500 italic">"I stayed here in 1984. It rained all week and I loved every minute. Save it for the next generation!"</p>
                             </div>
                         </div>
-                        <div className="flex items-center gap-3 text-sm">
-                            <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold">SM</div>
+                        <div className="flex gap-3 text-sm">
+                            <div className="w-8 h-8 rounded-full bg-emerald-100 flex-shrink-0 flex items-center justify-center text-emerald-800 font-bold font-serif">D</div>
                             <div>
-                                <p className="font-medium text-stone-900">Sarah Miller</p>
-                                <p className="text-xs text-stone-500">"My favourite school trip memory"</p>
+                                <p className="font-medium text-stone-900">David & Tom</p>
+                                <p className="text-stone-500 italic">"For the love of Welsh history. Good luck with the roof!"</p>
                             </div>
                         </div>
                     </div>
@@ -197,9 +231,12 @@ export default function RenovationPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-emerald-950 text-emerald-400 py-12 text-center">
-        <p className="text-sm">Thank you for helping us preserve Dolfriog Hall.</p>
-        <a href="/" className="text-white underline mt-2 block">Return to Homepage</a>
+      <footer className="bg-emerald-950 text-emerald-400 py-12 text-center border-t border-emerald-900">
+        <p className="text-sm font-medium">Thank you for helping us preserve Dolfriog Hall.</p>
+        <div className="flex justify-center gap-6 mt-4 text-xs tracking-widest uppercase">
+            <a href="/" className="hover:text-white transition-colors">Return Home</a>
+            <a href="/booking" className="hover:text-white transition-colors">Book a Stay</a>
+        </div>
       </footer>
     </div>
   );
