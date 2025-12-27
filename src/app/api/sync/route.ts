@@ -2,13 +2,12 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import ical from 'node-ical';
 
-// Initialize Database connection
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-export async function GET() {
+export async function POST() {
   try {
     const AIRBNB_URL = process.env.AIRBNB_ICAL_URL;
 
@@ -16,7 +15,7 @@ export async function GET() {
       return NextResponse.json({ error: "No Airbnb URL found" }, { status: 500 });
     }
 
-    // 1. Fetch the raw calendar data from Airbnb
+    // 1. Fetch the raw calendar data
     const response = await fetch(AIRBNB_URL);
     const text = await response.text();
 
@@ -24,55 +23,63 @@ export async function GET() {
     const events = ical.sync.parseICS(text);
     const newBookings = [];
 
-    // 3. Loop through events and format them for Supabase
+    // 3. Loop through events and format them
     for (const event of Object.values(events)) {
       if (event.type === 'VEVENT') {
-        const startDate = event.start;
-        const endDate = event.end;
-        
-        // Airbnb summary is usually "Reserved" or "Not available"
-        // We can check if it's a past or future booking here if we want
+        // Convert to ISO string for consistent storage
+        const startDate = new Date(event.start).toISOString();
+        const endDate = new Date(event.end).toISOString();
         
         newBookings.push({
           start_date: startDate,
           end_date: endDate,
-          guest_name: "Airbnb Guest", // iCal doesn't give names for privacy
+          guest_name: "Airbnb Guest",
           source: "airbnb",
           status: "confirmed",
-          notes: event.summary,
+          guests: 0, // Add default value
+          notes: event.summary || "",
         });
       }
     }
 
-    // 4. Upsert (Update if exists, Insert if new) to Database
-    // We use start_date as a rough unique constraint for this demo
+    console.log(`Processing ${newBookings.length} bookings...`);
+
+    // 4. Upsert to Database
+    let inserted = 0;
+    let skipped = 0;
+
     for (const booking of newBookings) {
-      // Check if this date range already exists to avoid duplicates
       const { data: existing } = await supabase
         .from('bookings')
         .select('id')
-        .eq('start_date', booking.start_date.toISOString())
+        .eq('start_date', booking.start_date)
         .single();
 
       if (!existing) {
-        await supabase.from('bookings').insert({
-            start_date: booking.start_date,
-            end_date: booking.end_date,
-            guest_name: booking.guest_name,
-            source: booking.source,
-            status: booking.status,
-            notes: booking.notes
-        });
+        const { error } = await supabase
+          .from('bookings')
+          .insert(booking);
+        
+        if (error) {
+          console.error('Insert error:', error);
+        } else {
+          inserted++;
+        }
+      } else {
+        skipped++;
       }
     }
 
     return NextResponse.json({ 
       success: true, 
-      message: `Synced ${newBookings.length} events from Airbnb` 
+      message: `Synced ${newBookings.length} events: ${inserted} new, ${skipped} already existed` 
     });
 
   } catch (error) {
     console.error('Sync failed:', error);
-    return NextResponse.json({ error: 'Sync failed' }, { status: 500 });
+    return NextResponse.json({ 
+      error: 'Sync failed', 
+      details: error instanceof Error ? error.message : 'Unknown error' 
+    }, { status: 500 });
   }
 }
